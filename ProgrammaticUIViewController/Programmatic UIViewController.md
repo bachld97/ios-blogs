@@ -232,7 +232,7 @@ extension LoginScreenViewController: LoginUseCaseDelegate {
 }
 ```
 
-Visit [my Github repository](https://github.com/bachld97) for full code demo of this login screen.
+Visit [my Github repository](https://github.com/bachld97/ios-blogs/tree/master/ProgrammaticUIViewController/LoginDemoApplication) for full code demo of this login screen.
 
 ## Additional comments
 
