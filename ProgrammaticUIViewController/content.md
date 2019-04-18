@@ -144,7 +144,7 @@ class LoginScreenView: UIView {
         // Do specific setup to this view
         return v
     }()
-    
+
     private lazy var errorMessageLabel: UILabel = {
         let v = UILabel()
         // Do specific setup to this view
@@ -162,7 +162,7 @@ class LoginScreenView: UIView {
         self.handler = handler
         setupNSLayoutConstraints()
     }
-    
+
     // do constraints layout if applicable
     private func setupNSLayoutConstraints() { }
 
@@ -247,4 +247,4 @@ This approach can make the class count explodes, so I avoid using it unless the 
 * Bob the developer's article: [Why I Don't Use Storyboard](https://www.bobthedeveloper.io/blog/why-i-don%E2%80%99t-use-storyboard)
 * Boris Ohayon's article: [iOS — Start an app without a storyboard](https://medium.com/ios-os-x-development/ios-start-an-app-without-storyboard-5f57e3251a25)
 * Paul Hudson's talk: [Separation of concerns: Refactoring view controllers](https://www.youtube.com/watch?v=hIaPdjS5GNo&t=1568s)
-* Lets build that app's Youtube video: [Swift: My Secret to Fixing Fat View Controller: Subclassing](https://www.youtube.com/watch?v=dSdkYEjLI3w)    
+* Lets build that app's Youtube video: [Swift: My Secret to Fixing Fat View Controller: Subclassing](https://www.youtube.com/watch?v=dSdkYEjLI3w)
