@@ -45,12 +45,13 @@ func application(_ application: UIApplication,
     return true
 }
 ```
+
 That's it! 
 Our `UIViewController` now does not depend on a Storyboard.
 
 ## Fix fat UIVIewController
 
-When opting in for programmatic `UIVIewController`, the `UIViewController` tends to become bloated because we have to do the setup and layout of child views in code either using `NSLayoutConstraints` or using `CGRect` and `setFrame`.
+When opting in for programmatic `UIVIewController`, the `UIViewController` tends to become bloated because we have to do the setup and layout of child views in code either using `NSLayoutConstraints` or using a frame-based approach using `CGRect`.
 
 We will take a login screen as an example.
 

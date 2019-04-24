@@ -21,41 +21,14 @@ class LoginUseCase {
 }
 ```
 
-## The call site // Is this neccessary?
-
-When I look at the `execute()` method, I think we need a little bit of redesign.
-I prefer the argument type to be clearer 
-(The benefit is even greater when it comes to languages who do not enforce named parameter like Java or Kotlin).
-
-So let us create a new type called `Credential`, which will be nested inside `LoginUseCase`.
-We can make use of a struct, or just simply use a named tuple.
-
-```swift
-class LoginUseCase {
-    struct Credential {
-        let username: String
-        let password: String
-    }
-
-    typealias (usename: String, password: String)
-}
-```
-Also, I want to alter the `execute()` method name a little bit.
-
-```swift
-let credential = LoginUseCase.Credential(username: "bachld", password: "hello")
-loginUseCase.doLogin(using: credential)
-```
-
 ##  API calls
 
 To login, we have to talk to a server and ask it to verify the credential information.
 It is acceptable to implement networking code right in our `LoginUseCase` class.
 However, I do not find this approach a good practice for some reason:
 
-* `LoginUseCase` has no business with networking details
-* Networking is a recurring task in most projects and separating it away from the use case enables us to reuse the code elsewhere
-* We want to keep as many class as small as possible and there is a clear line between the use case and networking implementation.
+* `LoginUseCase` should not worry about networking details
+* Networking is a common task in most projects so seperating and encapsulating networking logic enables us to reuse it later.
 * It is difficult to write unit test for our `LoginUseCase` class because it is impossible to fake a server response if the networking is buried deep inside our `execute` method.
 
 **NOTE:**
@@ -76,11 +49,10 @@ class NetworkingService {
     ) {
         // Networking code here
     }
-
-    func get(...) { ... }
-    func put(...) { ... }
 }
 ```
+
+Because we are going to make multiple network calls, each returning different type of data, using generic `<T>` is a good idea.
 
 Our login use case now looks something like this
 
@@ -104,15 +76,14 @@ class LoginUseCase {
 }
 ```
 
-It looks promising already. 
+It looks promising already!
 However, how can we actually call the `completion` closure with the appropriate data?
 Because the `post<T>()` method is generic, we have no concrete way convert response data into meaningful form to use.
 
-## Decodable to the rescue
+## Decodable protocol
 
-The solution is simple, and built-in in Swift.
-Decodable is a protocol which indicates that this object can be created using json data.
-To be more accurate: **decodable from json data**.
+The solution is simple, and built-in in Swift, namely `Decodable` protocol.
+Objects conforming to this protocol can be created by decoding a Json data.
 
 In order to work with our `post<T>(...)` method, we define a decodable class and change its signature to `post<T: Decodable>`.
 This decodable class represent the response from our server.
@@ -146,7 +117,7 @@ The decodable object
 
 ```swift
 struct LoginResponse: Decodable {
-    private let status: Int
+    private let stt: Int
     private let message: String
     private let user: UData?
 
@@ -159,7 +130,7 @@ struct LoginResponse: Decodable {
 
     // If response's json key is not the same as variable name
     private enum CodingKeys: CodingKey, String {
-        case status = "stt" // match response's key
+        case stt = "status" // match response's key
         case message
         case user
     }
