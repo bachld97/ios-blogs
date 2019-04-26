@@ -16,7 +16,9 @@ Therefore, I decided that I would not use storyboards and `.xib` files for my pr
 
 ## Getting rid of storyboards
 
-There are already a few tutorials for ditching the storyboards (such as [this one](https://medium.com/ios-os-x-development/ios-start-an-app-without-storyboard-5f57e3251a25)) so I will only provide a summary here.
+There are already a few tutorials for ditching the storyboards 
+(such as [this one](https://medium.com/ios-os-x-development/ios-start-an-app-without-storyboard-5f57e3251a25)) 
+so I will only provide a summary here.
 
 ### Tell XCode not to use Storyboard on launch
 Go to `General > Deployment Info > Main Interface` and clear that field.
