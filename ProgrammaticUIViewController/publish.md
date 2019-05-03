@@ -191,7 +191,6 @@ visit (my repository)[https://bitbucket.org/bachld97/ios-blogs-sample-app/].
 
 ## Reference
 
-
 * Bob the developer's article: [Why I Don't Use Storyboard](https://www.bobthedeveloper.io/blog/why-i-don%E2%80%99t-use-storyboard)
 * Boris Ohayon's article: [iOS — Start an app without a storyboard](https://medium.com/ios-os-x-development/ios-start-an-app-without-storyboard-5f57e3251a25)
 * Paul Hudson's talk: [Separation of concerns: Refactoring view controllers](https://www.youtube.com/watch?v=hIaPdjS5GNo&t=1568s)
