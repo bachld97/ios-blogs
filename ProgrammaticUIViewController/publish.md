@@ -183,7 +183,9 @@ corresponding `UIView` subclass to reuse code.
 * The use of lazy variables inside `LoginScreenView` is not necessary, we can 
 use lateinit (force unwrap) variables or use `let` and create it inside `init`.
 It is just my preference to create it in lazily like that.
-
+* [This post](https://swiftrocks.com/writing-cleaner-view-code-by-overriding-loadview.html)
+explains how we can apply generics to the `loadView()` method.
+I think it is a great resource to look at.
 
 Finally, thank you for going through this post.
 For associated sample application, 
@@ -195,3 +197,4 @@ visit (my repository)[https://bitbucket.org/bachld97/ios-blogs-sample-app/].
 * Boris Ohayon's article: [iOS — Start an app without a storyboard](https://medium.com/ios-os-x-development/ios-start-an-app-without-storyboard-5f57e3251a25)
 * Paul Hudson's talk: [Separation of concerns: Refactoring view controllers](https://www.youtube.com/watch?v=hIaPdjS5GNo&t=1568s)
 * Lets build that app's Youtube video: [Swift: My Secret to Fixing Fat View Controller: Subclassing](https://www.youtube.com/watch?v=dSdkYEjLI3w)
+* SwiftRocks': [Writing Cleaner View Code in Swift by Overriding loadView()](https://swiftrocks.com/writing-cleaner-view-code-by-overriding-loadview.html)
