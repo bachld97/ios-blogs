@@ -27,7 +27,7 @@ struct User: Decodable {
 }
 ```
 
-This code is able to be parsed from the following Json, not that the json keys and the variable names must exactly match each other.
+This code is able to be parsed from the following Json, note that the json keys and the variable names must exactly match each other.
 
 ```json
 {
@@ -39,14 +39,15 @@ This code is able to be parsed from the following Json, not that the json keys a
 Contained `Decodable` type can be of custom types as well, and an array of `Decodable` is also `Decodable`.
 For example: 
 
+```swift
 struct User: Decodable {
     let name: String
     let age: Int
     let children: [User]
 }
+```
 
 The previous struct can be constructed by decoding the following json object
-
 
 ```json
 {
@@ -60,7 +61,7 @@ The previous struct can be constructed by decoding the following json object
 }
 ```
 
-ALternatively, you can decide which properties are used to decode or specify which key is used to decode each variable by using `CodingKeys`.
+Alternatively, you can decide which properties are used to decode or specify which key is used to decode each variable by using `CodingKeys`.
 For example, the following json response cannot be decoded using previous struct although it represent the same user.
 
 
@@ -117,7 +118,7 @@ func fetchUser(callback: (User?) -> Void) {
 }
 ```
 
-`WebService` is a user defined object I create to encapsulate networking code and `get(...)` is a routine to call a REST API with `GET` method.
+`WebService` is a user defined object I create to encapsulate networking code and `performGet(...)` is a routine to call a REST API with `GET` method.
 In this routine, it construct the request, talk to server, parse the response, then notify us using the callback.
 With this shortened version, you save more than 10 lines of code for each APIs request you make.
 Note that you can use UrlSession extension instead of creating another class, however, I prefer this approach since we can later switch to using Alamofire (or other networking framework of your choice, who knows) if we want.
@@ -126,7 +127,7 @@ Note that you can use UrlSession extension instead of creating another class, ho
 
 The small snippet above may leave you thinking how do we parse another type of object rather than `User` because the code exposes no details about type of the object to be decoded.
 The answer is that it makes use of generics, and the type that is used is the type of first parameter of the callback closure.
-The signature of the `get(...)` method:
+The signature of the `performGet(...)` method:
 
 ```swift
 func performGet<T: Decodable>(
@@ -220,7 +221,7 @@ func performGet<T: Decodable>(
 
 The `urlSession` is a member property of `WebService` and the that's all we need to implement.
 
-There a few refinements you can tailor to your preference, such as using Result<T, Error> in the callback:
+There a few refinements you can tailor to your preference, such as using `Result<T, Error>` in the callback:
 
 ```swift
 func performGet<T: Decodable>(
@@ -230,11 +231,11 @@ func performGet<T: Decodable>(
 ```
 
 ..., or turning `performGet` into a universal method, handling all POST, GET, and PUT.
-To do this, we add a field to our `WebService.Request` named httpMethod, for example.
+To do this, we add a field to our `WebService.Request` named `httpMethod`, for example.
 
 ```swift
 struct Request {
-    struct HttpMethod: String {
+    enum HttpMethod: String {
         case get = "GET"
         case post = "POST"
         case put = "PUT"
@@ -262,6 +263,10 @@ struct FetchUserResponse: Decodable {
     }
 }
 ```
+
+This way, we can deal with various kinds of response from server.
+
+Cheers.
 
 ## References
 
