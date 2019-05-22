@@ -31,8 +31,8 @@ This code is able to be parsed from the following Json, not that the json keys a
 
 ```json
 {
-    'name': 'Bach Le',
-    'age': 21,
+    "name": "Bach Le",
+    "age": 21,
 }
 ```
 
@@ -50,12 +50,12 @@ The previous struct can be constructed by decoding the following json object
 
 ```json
 {
-    'name': 'Father of Bach',
-    'age': 50,
-    'children': [
-        {'name': 'Bach Le', 'age': 21, 'children': []},
-        {'name': 'Bach Le 2', 'age': 21, 'children': []},
-        {'name': 'Bach Le 3', 'age': 21, 'children': []}
+    "name": "Father of Bach",
+    "age": 50,
+    "children": [
+        {"name": "Bach Le", "age": 21, "children": []},
+        {"name": "Bach Le 2", "age": 21, "children": []},
+        {"name": "Bach Le 3", "age": 21, "children": []}
     ]
 }
 ```
@@ -66,8 +66,8 @@ For example, the following json response cannot be decoded using previous struct
 
 ```json
 {
-    'user_name': 'Bach Le',
-    'age': 21,
+    "user_name": "Bach Le",
+    "age": 21,
 }
 ```
 
