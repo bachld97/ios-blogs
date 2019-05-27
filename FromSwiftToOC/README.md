@@ -207,3 +207,33 @@ However, importing the whole other headers are not efficient, we should use forw
 ```objc
 @class ForwardDeclaredClass1, ForwardDeclaredClass2
 ```
+
+## Object construction
+
+We can define custom constructors
+
+```objc
+// Remember to declare the prototype in header file
+- (instancetype) initWithSomething:(SomethingType)something {
+    self = [self/super init];
+    if (self != nil) {
+        // setSomething
+    }
+    return self;
+}
+```
+
+Or use static builder method
+
+```objc
++ (instancetype) createFromSomthing:(Somethingtype)something {
+    // Similar to constructor, or call constructor
+}
+```
+
+
+
+
+
+
+
