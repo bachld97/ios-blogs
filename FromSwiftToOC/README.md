@@ -9,7 +9,7 @@ In `.h`, we create the header, and in `.m` we create the implementation
 // ExampleClass.h
 @interface ExampleClass: NSObject 
 // Public methods and properties declaration
-end
+@end
 
 // ExampleClass.m
 @interface Example ()
@@ -74,8 +74,9 @@ Declaration
 ```swift
 // Swift
 func doSomething(var1: Type1, namedVar2 var2: Type2, var3: Type3) -> ReturnType { }
+```
 
-// Objective-C
+```objc
 - (ReturnType)doSomethingWithVar1:(Type1)var1 namedVar:(Type2)var2 :(Type3)var3 { }
 ```
 
@@ -84,13 +85,23 @@ Call site
 ```swift
 // Swift
 self.doSomething(var1: v1, namedVar2: v2, var3: v3)
+```
 
+```objc
 // Objective-C
 [self doSomethingWithVar1:v1 namedVar2:v2 :v3];
 ```
 
-## Protocol declaration and comformance
+Static/Class properties
+```swift
+// Declaration
++ (void) classFuncStartWithPlus;
 
+// Call site
+[ClassName classFuncStartWithPlus];
+```
+
+## Protocol declaration and comformance
 
 ```objc
 // Declaration
@@ -133,7 +144,7 @@ Extension feature in Swift is named category in objective-C
 - (void) anchorToTop:(nullable NSLayoutYAxisAnchor *)top
              leading:(nullable NSLayoutXAxisAnchor *)leading
               bottom:(nullable NSLayoutYAxisAnchor *)bottom
-            trailing:(nullable NSLayoutXAxisAnchor* )trailing
+            trailing:(nullable NSLayoutXAxisAnchor *)trailing
              padding:(UIEdgeInsets)padding
                 size:(CGSize)size
 {
@@ -169,3 +180,27 @@ Extension feature in Swift is named category in objective-C
 ```
 
 To use category methods, remember to import category header files.
+
+## Enums
+
+Declare this in a header, and import such header in files that uses this enum.
+
+```objc
+#import <Foundation/Foundation.h>
+
+typedef NS_ENUM(NSInteger, EnumTest) {
+    EnumTestValue1, 
+    EnumTestValue2,
+}
+```
+
+Enum name prefix is important, it makes code readable and helps autocomplete.
+
+## Forward declaration
+
+Like C/C++, sometimes we need our header to declare a class in different headers.
+However, importing the whole other headers are not efficient, we should use forward declaration instead.
+
+```objc
+@class ForwardDeclaredClass1, ForwardDeclaredClass2
+```
