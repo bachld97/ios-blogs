@@ -24,13 +24,15 @@ In `.h`, we create the header, and in `.m` we create the implementation
 ## Properties declaration
 
 Properties must be declared within the 2 `@interface` above.
-The code below illustrate how to create a string
+The code below illustrate how to create a string.
 
 ```objc
 @property (nonatomic, strong) NSString *stringName;
+```
 
-// Overall syntax
-@property (attributes) type name;
+The general syntax:
+```
+@property (attributes) Type name;
 ```
 
 ### Property attributes
@@ -69,12 +71,13 @@ This avoids problem of value being changed unexpectedly.
 
 Side-by-side declaration of swift and objc
 
-Declaration
+In swift,
 
 ```swift
-// Swift
 func doSomething(var1: Type1, namedVar2 var2: Type2, var3: Type3) -> ReturnType { }
 ```
+
+and objective-C counterpart
 
 ```objc
 - (ReturnType)doSomethingWithVar1:(Type1)var1 namedVar:(Type2)var2 :(Type3)var3 { }
